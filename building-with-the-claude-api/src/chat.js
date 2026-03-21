@@ -32,9 +32,9 @@ console.log(`\nCHATTING WITH AI ASSISTANT`);
 console.log("   enter 'q' for exit");
 while (true) {
   const user = prompt(">");
-  if (user === "q") {
-    break;
-  }
+  if (user === "q") break;
+  if (!user) continue;
+
   add_user_message(user);
   let answer = await chat(options);
   add_assistant_message(answer);
