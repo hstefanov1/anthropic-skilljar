@@ -18,9 +18,9 @@ export function add_assistant_message(text) {
 
 export async function chat({ verbose: _verbose, ...options } = {}) {
   const verbose = _verbose ?? true;
+  if (verbose) console.log("---");
 
   let answer = "";
-  if (verbose) console.log("---");
 
   // prettier-ignore
   await client.messages.stream({
@@ -29,7 +29,7 @@ export async function chat({ verbose: _verbose, ...options } = {}) {
     messages: messages,
     ...options
   }).on("text", (text) => {
-    process.stdout.write(text);
+    if (verbose) process.stdout.write(text);
   }).on("end", () => {
     if (verbose) console.log();
   }).on("error", (e) => {
