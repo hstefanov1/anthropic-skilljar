@@ -1,4 +1,4 @@
-const available = ["chat", "codegen"];
+const available = ["chat", "codegen", "eval"];
 let feature;
 do {
   feature = prompt(`Enter the feature to run (${available}):`);
