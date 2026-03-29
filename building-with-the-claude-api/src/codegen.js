@@ -1,3 +1,5 @@
+// Interactive code generation feature for bash, java, and javascript.
+// Uses stop sequences to return only code, without markdown formatting.
 import { add_user_message, add_assistant_message, chat } from "./assistant";
 
 function select_assistant_expertise() {

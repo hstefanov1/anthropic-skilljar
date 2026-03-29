@@ -1,3 +1,5 @@
+// Interactive chat feature with a configurable mood (boring, normal, creative).
+// Adjusts the assistant's temperature based on the selected mood and maintains conversation history.
 import { add_user_message, add_assistant_message, chat } from "./assistant";
 
 function select_assistant_mood() {

@@ -1,3 +1,5 @@
+// Anthropic client wrapper that manages conversation history and streams responses.
+// Exports add_user_message, add_assistant_message, and chat for use by feature modules.
 import Anthropic from "@anthropic-ai/sdk";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
@@ -14,9 +16,11 @@ export function add_assistant_message(text) {
   messages.push(message);
 }
 
-export async function chat({ ...options } = {}) {
+export async function chat({ verbose: _verbose, ...options } = {}) {
+  const verbose = _verbose ?? true;
+
   let answer = "";
-  console.log("---");
+  if (verbose) console.log("---");
 
   // prettier-ignore
   await client.messages.stream({
@@ -27,13 +31,13 @@ export async function chat({ ...options } = {}) {
   }).on("text", (text) => {
     process.stdout.write(text);
   }).on("end", () => {
-    console.log();
+    if (verbose) console.log();
   }).on("error", (e) => {
     process.stderr.write(`Ops, something went wrong =(\n\nERROR: ${e.message}`)
   }).on("contentBlock", (msg) => {
     answer = msg.text;
   }).finalMessage().catch(() => { }); // suppress the stack trace
 
-  console.log("---");
+  if (verbose) console.log("---");
   return answer;
 }
