@@ -23,7 +23,7 @@ if [[ ! -f "$file_path" ]]; then
   exit 1
 fi
 
-bun --inspect-brk "$file_path"
+bun --inspect-wait="localhost:6499/$file_path" "$file_path"
 
 echo
 echo "::: BASH COMPLETED SUCCESSFULLY :::"
