@@ -7,7 +7,21 @@ echo
 echo ".:: BUILDING WITH CLAUDE-API ::."
 echo
 
-bun run index.js
+if [[ "$1" ]]; then
+  file_path="./src/$1"
+else
+  file_path="./src/index.js"
+fi
+echo "Running file => $file_path"
+echo
+
+if [[ ! -f "$file_path" ]]; then
+  echo "ERROR: file not found"
+  echo
+  exit 1
+fi
+
+bun run "$file_path"
 
 echo
 echo "::: BASH COMPLETED SUCCESSFULLY :::"
