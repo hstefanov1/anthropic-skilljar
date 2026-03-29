@@ -1,0 +1,17 @@
+[
+  {
+    "task": "Write a JavaScript function that takes an array of objects and groups them by a specified property key."
+  },
+  {
+    "task": "Write a JavaScript function that debounces another function by a given delay in milliseconds."
+  },
+  {
+    "task": "Write a JavaScript function that deeply flattens a nested array into a single-level array."
+  },
+  {
+    "task": "Write a JavaScript function that takes two date strings and returns the number of days between them."
+  },
+  {
+    "task": "Write a JavaScript function that truncates a string to a maximum length and appends an ellipsis if it was cut."
+  }
+]

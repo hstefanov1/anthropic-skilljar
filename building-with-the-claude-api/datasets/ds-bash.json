@@ -1,0 +1,17 @@
+[
+  {
+    "task": "Write a bash function that checks if a given port number is currently in use on the system."
+  },
+  {
+    "task": "Write a bash function that takes a directory path and returns the total size of all files with a given extension."
+  },
+  {
+    "task": "Write a bash function that accepts a string and counts the number of words in it."
+  },
+  {
+    "task": "Write a bash function that checks whether a given file is older than N days."
+  },
+  {
+    "task": "Write a bash function that generates a random alphanumeric string of a specified length."
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "task": "Write a Java function that takes a list of integers and returns a new list containing only the even numbers."
+  },
+  {
+    "task": "Write a Java function that reverses the words in a given sentence string."
+  },
+  {
+    "task": "Write a Java function that checks whether a given string is a palindrome."
+  },
+  {
+    "task": "Write a Java function that takes a Map<String, Integer> and returns the key with the highest value."
+  },
+  {
+    "task": "Write a Java function that converts a temperature value from Celsius to Fahrenheit."
+  }
+]
