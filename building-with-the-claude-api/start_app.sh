@@ -10,7 +10,7 @@ echo
 if [[ "$1" ]]; then
   file_path="./src/$1"
 else
-  file_path="./src/index.js"
+  file_path="index.js"
 fi
 echo "Running file => $file_path"
 echo
