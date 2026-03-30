@@ -1,6 +1,7 @@
 // Interactive chat feature with a configurable mood (boring, normal, creative).
 // Adjusts the assistant's temperature based on the selected mood and maintains conversation history.
 import { add_user_message, add_assistant_message, chat } from "./assistant";
+import { log } from "./log";
 
 function select_assistant_mood() {
   const available = ["boring", "normal", "creative"];
@@ -30,8 +31,8 @@ const options = {
   temperature: temperature, // 0<=t<=1, where 0 is boring and 1 is creative
 };
 
-console.log(`\nCHATTING WITH AI ASSISTANT`);
-console.log("   enter 'q' for exit");
+log(`\nCHATTING WITH AI ASSISTANT`);
+log("   enter 'q' for exit");
 while (true) {
   const user = prompt(">");
   if (user === "q") break;
@@ -41,4 +42,4 @@ while (true) {
   let answer = await chat(options);
   add_assistant_message(answer);
 }
-console.log("CHAT TERMINATED");
+log("CHAT TERMINATED");
