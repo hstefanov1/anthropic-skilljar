@@ -7,6 +7,10 @@ const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const model = "claude-sonnet-4-6";
 const messages = [];
 
+export function clear_context() {
+  messages.length = 0;
+}
+
 export function add_user_message(text) {
   const message = { role: "user", content: text };
   messages.push(message);
