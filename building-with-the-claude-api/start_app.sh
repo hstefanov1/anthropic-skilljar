@@ -8,7 +8,7 @@ echo ".:: BUILDING WITH CLAUDE-API ::."
 echo
 
 if [[ "$1" ]]; then
-  file_path="./src/$1"
+  file_path="./src/$1.js"
 else
   file_path="index.js"
 fi

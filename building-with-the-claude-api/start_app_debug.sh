@@ -7,12 +7,10 @@ echo
 echo ".:: BUILDING WITH CLAUDE-API (DEBUGGING MODE) ::."
 echo
 
-if [[ ! "$1" ]]; then
-  read -rp "Enter file name: ./src/"
-  file_path="./src/$REPLY"
-  echo
+if [[ "$1" ]]; then
+  file_path="./src/$1.js"
 else
-  file_path="./src/$1"
+  file_path="index.js"
 fi
 echo "Debugging file => $file_path"
 echo
