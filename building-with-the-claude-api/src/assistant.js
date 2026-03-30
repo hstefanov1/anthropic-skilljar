@@ -38,7 +38,7 @@ export async function chat({ verbose: _verbose, ...options } = {}) {
   }).on("end", () => {
     if (verbose) log();
   }).on("error", (e) => {
-    error(`\nERROR: ${e.message}`)
+    error(`${e.message}`)
   }).on("contentBlock", (msg) => {
     answer = msg.text;
   }).finalMessage().catch(() => {

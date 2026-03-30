@@ -8,5 +8,5 @@ export function inline(text) {
 }
 
 export function error(text) {
-  console.error(text);
+  console.error(`\nERROR: ${text}\n`);
 }
