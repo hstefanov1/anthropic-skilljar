@@ -159,11 +159,11 @@ async function evaluate_task(test_case, code_grader) {
   log(`${model_score}`);
 
   inline(" grading by code.........: ");
-  const user_grade = await code_grader(output);
-  const user_score = user_grade.score;
-  log(`${user_score}`);
+  const code_grade = await code_grader(output);
+  const code_score = code_grade.score;
+  log(`${code_score}`);
 
-  let score = parseFloat(((model_score + user_score) / 2).toFixed(2));
+  let score = parseFloat(((model_score + code_score) / 2).toFixed(2));
 
   return {
     test_case: test_case,
