@@ -42,7 +42,7 @@ export async function chat({ verbose: _verbose, ...options } = {}) {
   }).on("contentBlock", (msg) => {
     answer = msg.text;
   }).finalMessage().catch(() => {
-    process.exit(1) // exit on unhandled stream error
+    process.exit(1); // exit on unhandled stream error
   });
 
   if (verbose) log("---");
