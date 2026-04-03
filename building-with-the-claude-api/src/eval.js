@@ -139,7 +139,11 @@ async function grade_by_model(test_case, output) {
 }
 
 async function solve_task(test_case) {
-  let prompt = `Please solve the following task: ${test_case.task}`;
+  let prompt = `Please solve the following task: "${test_case.task}".
+      Don't add comments or explanations to the solution.
+      Don't use markdown tags in the solution.
+      Provide only and solely the code solution.
+      `;
   add_user_message(prompt);
   return await chat({ verbose: false });
 }
