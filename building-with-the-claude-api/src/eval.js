@@ -5,7 +5,7 @@ import { tmpdir } from "os";
 import { readFileSync, unlinkSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
-import { log, inline, inline_error, error } from "./log";
+import { log, inline, fail, error } from "./log";
 import { clear_context, add_user_message, chat } from "./assistant";
 
 function select_assistant_expertise() {
@@ -26,7 +26,6 @@ function select_grader(expertise) {
   const grader = graders[expertise];
   if (!grader) {
     error(`Unimplemented grader for expertise "${expertise}"`);
-    process.exit(1);
   }
   return grader;
 }
@@ -42,8 +41,7 @@ async function require_cmd(cmd) {
   const exit = await proc.exited;
   const success = exit === 0;
   if (!success) {
-    inline_error(`${cmd} not found in $PATH`);
-    process.exit(-1);
+    fail(`${cmd} not found in $PATH`);
   }
 }
 
