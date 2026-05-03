@@ -1,6 +1,7 @@
 // Generic prompt evaluation runner for iterative prompt engineering.
 // Guides the user through defining a topic, building a dataset with Claude,
 // reviewing and evaluating prompts, and exporting a report.
+import { add_user_message, chat } from "./assistant";
 import { createInterface } from "readline";
 import { log, inline } from "./log";
 
@@ -40,16 +41,49 @@ async function generate_dataset(topic) {
   log("\nBuild your dataset with Claude");
 
   while (true) {
-    let user = await prompt_input(`${" ".repeat(3)}enter 'q' to generate`);
+    let spec = await prompt_input(`${" ".repeat(3)}enter 'q' to generate`);
 
     while (true) {
-      // TODO: generate dataset with model using `user`
-      let dataset = [{ task: "TODO" }];
-      log("\nGenerated dataset:");
-      log(`${JSON.stringify(dataset, null, 2)}\n`);
+      add_user_message(
+        `
+        You are an AI dataset generator.
 
+        Goal:
+        Create high-quality dataset items for a prompt evaluation of the topic provided.
+
+        Rules:
+        - Each item should represent a realistic and useful task or example.
+        - Keep each item under 50 words.
+        - Ensure variation in phrasing and intent.
+        - No duplicates or near-duplicates.
+        - Stick strictly to the output format.
+
+        Output must be a valid JSON array in the following format:
+        [
+          {
+            task: "<dataset item 1>"
+          },
+          {
+            task: "<dataset item 2>"
+          },
+          {
+            task: "<dataset item N>"
+          }
+        ]
+
+        Topic: ${topic}
+        Specification: ${spec}
+        Number of items: 5
+        `,
+      );
+      log();
+      let dataset = await chat({
+        system: `Write only the JSON code. Do not include \`\`\`json. After the code, write "@json@".`,
+        stop_sequences: ["@json@"],
+      });
+      log();
       const action = await prompt_action("[k]eep, [r]egenerate, [e]dit prompt");
-      if (action === "k") return { user, topic, dataset };
+      if (action === "k") return { dataset: JSON.parse(dataset) };
       if (action === "e") break; // break inner loop -> re-read input
       // "r" continues inner loop -> regenerates with same prompt
     }
